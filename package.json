@@ -1,6 +1,6 @@
 {
   "name": "can-stache-route-helpers",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "stache helpers for can-route",
   "homepage": "http://canjs.com",
   "repository": {
