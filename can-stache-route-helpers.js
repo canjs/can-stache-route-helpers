@@ -1,7 +1,6 @@
 var helpers = require('can-stache/helpers/core');
 var route = require('can-route');
 
-var getLast = require('can-util/js/last/last');
 var stacheExpression = require('can-stache/src/expression');
 var each = require("can-util/js/each/each");
 
