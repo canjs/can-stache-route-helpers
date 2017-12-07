@@ -9,7 +9,7 @@ Returns if the hash values match the [can-route]'s current properties.
   can be used in conjunction with other helpers:
 
 ```
-{{linkTo "Todos" routeCurrent(page='todos' id=todo.id)}}
+{{linkTo("Todos", routeCurrent(page='todos' id=todo.id))}}
 ```
 
 Or on its own:
@@ -69,14 +69,6 @@ With default routes and a url like `#!&page=recipe&id=5`, this produces:
 ```
 <li class='active'>
   <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
-</li>
-```
-
-This functionality could also be written as a call expression:
-
-```
-<li {{#routeCurrent(page="recipe" id=5)}}class='active'{{/routeCurrent}}>
-  <a href='{{routeCurrent(page="recipe" id=5)}}'>{{recipe.name}}</a>
 </li>
 ```
 

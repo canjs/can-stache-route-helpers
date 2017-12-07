@@ -17,7 +17,7 @@ This can be used on its own to create `<a>` `href`s like:
 Or in conjunction with other helpers:
 
 ```
-{{makeLink( "details" routeUrl(page='todos', true) )}}
+{{makeLink( "details", routeUrl(page='todos', true) )}}
 ```
 
 @signature `{{routeUrl([merge,] hashes...)}}`
@@ -51,12 +51,6 @@ This produces (with no pretty routing rules):
 <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
 ```
 
-It this functionality could also be written as:
-
-```
-<a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
-```
-
 Using call expressions/parenthesis lets you pass the `merge` option to `route`.  This
 lets you write a url that only changes specified properties:
 
@@ -75,7 +69,7 @@ create links that update [can-route]'s `page` attribute:
 It also writes out the current url like:
 
 ```
-{{ routeUrl(undefined,true) }}
+{{ routeUrl(undefined, true) }}
 ```
 
 This calls `route.url({}, true)` which has the effect of writing out
