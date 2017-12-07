@@ -5,7 +5,7 @@ var mockRoute = require("can-route/test/mock-route-binding");
 var CanMap = require("can-map");
 require("./can-stache-route-helpers");
 
-QUnit.module("can-stache/helpers/route");
+QUnit.module("can-stache-route-helpers");
 
 QUnit.test("routeUrl and routeCurrent", function(){
 	stop();

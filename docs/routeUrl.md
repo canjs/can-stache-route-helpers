@@ -1,4 +1,4 @@
-@function can-stache-route-helpers.routeUrl {{routeUrl hashes}}
+@function can-stache-route-helpers.routeUrl {{routeUrl(hashes)}}
 @parent can-stache-route-helpers
 
 Returns a url using [can-route.url route.url].
@@ -17,15 +17,15 @@ This can be used on its own to create `<a>` `href`s like:
 Or in conjunction with other helpers:
 
 ```
-{{makeLink "details" routeUrl(page='todos', true)}}
+{{makeLink( "details" routeUrl(page='todos', true) )}}
 ```
 
-@signature `{{routeUrl [merge] hashes... }}`
+@signature `{{routeUrl([merge,] hashes...)}}`
 
 Passes the hashes to `route.url` and returns the result.
 
 ```
-<a href="{{routeUrl page='todos' id=todo.id}}">details</a>
+<a href="{{routeUrl(page='todos' id=todo.id)}}">details</a>
 ```
 
 @param {Boolean} [merge] Pass `true` to create a url that merges `hashes` into the
@@ -42,13 +42,13 @@ current [can-route] properties.
 Use the `routeUrl` helper like:
 
 ```
-<a href='{{routeUrl page="recipe" id=5}}'>{{recipe.name}}</a>
+<a href='{{routeUrl(page="recipe" id=5)}}'>{{recipe.name}}</a>
 ```
 
 This produces (with no pretty routing rules):
 
 ```
-<a href='#!&page=5&id=5'>{{recipe.name}}</a>
+<a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
 ```
 
 It this functionality could also be written as:
@@ -67,7 +67,7 @@ lets you write a url that only changes specified properties:
 
 
 
-The following demo uses `routeUrl` and [can-stache.helpers.routeCurrent] to
+The following demo uses `routeUrl` and [can-stache-route-helpers.routeCurrent] to
 create links that update [can-route]'s `page` attribute:
 
 @demo demos/can-stache/route-url.html

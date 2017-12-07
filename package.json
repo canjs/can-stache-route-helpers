@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "can-route": "^4.0.0-pre.0",
-    "can-stache": "^4.0.0-pre.9"
+    "can-stache": "^4.0.0-pre.31"
   },
   "devDependencies": {
     "can-map": "^4.0.0-pre.0",
