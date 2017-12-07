@@ -12,7 +12,7 @@ QUnit.test("routeUrl and routeCurrent", function(){
 	mockRoute.start();
 	var routeData = new CanMap({});
 	route.data = routeData;
-	route.ready();
+	route.start();
 
 	var template = stache("<a href=\"{{routeUrl(page='recipe' id=recipe.id)}}\">{{recipe.name}}</a>");
 

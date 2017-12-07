@@ -26,6 +26,6 @@ import route from "can/route/"
 import $ from "jquery";
 
 can.route(':page',{page: 'home'});
-can.route.ready();
+can.route.start();
 $("body").append( can.view('demo-html',route) );
 </script>
