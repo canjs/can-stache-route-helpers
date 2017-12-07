@@ -2,17 +2,17 @@
 <script type='text/stache' id='demo-html'>
 <pre>url={{ routeUrl(undefined,true) }}</pre>
 
-<a	{{^ routeCurrent(page='home') }}
-		href="{{ routeUrl(page='home') }}"
+<a {{^ routeCurrent(page='home') }}
+	href="{{ routeUrl(page='home') }}"
 	{{/routeCurrent}}
-	>home</a>
+>home</a>
 
-<a  {{^routeCurrent page='restaurants'}}
-		href="{{routeUrl page='restaurants'}}"
+<a {{^routeCurrent(page='restaurants')}}
+	href="{{routeUrl(page='restaurants')}}"
 	{{/routeCurrent}}
-	>restaurants</a>
+>restaurants</a>
 
-{{#eq page 'home'}}
+{{#eq(page, 'home')}}
 	<h1>Home page</h1>
 {{else}}
 	<h1>Restaurants page</h1>
