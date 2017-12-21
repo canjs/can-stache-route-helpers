@@ -8,13 +8,13 @@ Returns if the hash values match the [can-route]'s current properties.
   Calls [can-route.current route.current] with `hashes` and returns the result. This
   can be used in conjunction with other helpers:
 
-```
+```html
 {{linkTo("Todos", routeCurrent(page='todos' id=todo.id))}}
 ```
 
 Or on its own:
 
-```
+```html
 <a class="{{#routeCurrent(page='todos', true)}}active{{/routeCurrent}}">Todos</a>
 ```
 
@@ -31,7 +31,7 @@ Or on its own:
 Renders `FN` if the `hashes` passed to [can-route.current route.current] returns `true`.
 Renders the `INVERSE` if [can-route.current route.current] returns `false`.
 
-```
+```html
 <a class="{{#routeCurrent(true, page='todos')}}active{{/routeCurrent}}">Todos</a>
 ```
 
@@ -58,7 +58,7 @@ Renders the `INVERSE` if [can-route.current route.current] returns `false`.
 
 Use the `routeCurrent` helper like:
 
-```
+```html
 <li {{#routeCurrent(page="recipe" id=5)}}class='active'{{/routeCurrent}}>
   <a href='{{routeUrl(page="recipe" id=5)}}'>{{recipe.name}}</a>
 </li>
@@ -66,7 +66,7 @@ Use the `routeCurrent` helper like:
 
 With default routes and a url like `#!&page=recipe&id=5`, this produces:
 
-```
+```html
 <li class='active'>
   <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
 </li>
