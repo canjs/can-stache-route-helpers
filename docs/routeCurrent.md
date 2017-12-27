@@ -1,7 +1,7 @@
 @function can-stache-route-helpers.routeCurrent {{#routeCurrent(hash)}}
 @parent can-stache-route-helpers
 
-Returns if the hash values match the [can-route]'s current properties.
+Returns if the hash values match the [can-route]’s current properties.
 
 @signature `routeCurrent( hashes... [,subsetMatch] )`
 
@@ -74,6 +74,6 @@ With default routes and a url like `#!&page=recipe&id=5`, this produces:
 
 
 The following demo uses `routeCurrent` and [can-stache-route-helpers.routeUrl] to
-create links that update [can-route]'s `page` attribute:
+create links that update [can-route]’s `page` attribute:
 
 @demo demos/can-stache/route-url.html

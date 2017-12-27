@@ -5,7 +5,7 @@ Returns a url using [can-route.url route.url].
 
 @signature `routeUrl( hashes... [,merge] )`
 
-Calls [can-route.url] with  `hashes` as it's `data` argument and an
+Calls [can-route.url] with  `hashes` as its `data` argument and an
 optional `merge`.
 
 This can be used on its own to create `<a>` `href`s like:
@@ -62,7 +62,7 @@ lets you write a url that only changes specified properties:
 
 
 The following demo uses `routeUrl` and [can-stache-route-helpers.routeCurrent] to
-create links that update [can-route]'s `page` attribute:
+create links that update [can-route]’s `page` attribute:
 
 @demo demos/can-stache/route-url.html
 
