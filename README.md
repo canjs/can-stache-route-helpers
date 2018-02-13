@@ -10,7 +10,7 @@ helpers for can-route
 
 With StealJS, you can import this module directly in a template that is autorendered:
 
-```javascript
+```js
 import plugin from 'can-stache-route-helpers';
 ```
 
@@ -19,7 +19,7 @@ import plugin from 'can-stache-route-helpers';
 Use `require` to load `can-stache-route-helpers` and everything else
 needed to create a template that uses `can-stache-route-helpers`:
 
-```javascript
+```js
 import plugin from "can-stache-route-helpers";
 ```
 
