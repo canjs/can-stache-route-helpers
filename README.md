@@ -11,7 +11,7 @@ helpers for can-route
 With StealJS, you can import this module directly in a template that is autorendered:
 
 ```js
-import plugin from 'can-stache-route-helpers';
+import plugin from "can-stache-route-helpers";
 ```
 
 ### CommonJS use
@@ -20,7 +20,7 @@ Use `require` to load `can-stache-route-helpers` and everything else
 needed to create a template that uses `can-stache-route-helpers`:
 
 ```js
-var plugin = require("can-stache-route-helpers");
+import plugin from "can-stache-route-helpers";
 ```
 
 ### Standalone use
