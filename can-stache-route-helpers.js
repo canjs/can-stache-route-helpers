@@ -2,7 +2,7 @@ var helpers = require('can-stache/helpers/core');
 var route = require('can-route');
 
 var stacheExpression = require('can-stache/src/expression');
-var each = require("can-util/js/each/each");
+var canReflect = require("can-reflect");
 
 var looksLikeOptions = helpers.looksLikeOptions;
 
@@ -11,7 +11,7 @@ var calculateArgs = function(){
 		finalMerge,
 		optionsArg;
 
-	each(arguments, function(arg){
+	canReflect.eachIndex(arguments, function(arg){
 		if(typeof arg === "boolean") {
 			finalMerge = arg;
 		} else if( arg && typeof arg === "object"  ) {
