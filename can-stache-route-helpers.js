@@ -1,3 +1,4 @@
+"use strict";
 var helpers = require('can-stache/helpers/core');
 var route = require('can-route');
 
