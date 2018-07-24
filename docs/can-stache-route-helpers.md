@@ -13,7 +13,7 @@
     Use the `routeUrl` helper like:
 
     ```html
-    <a href='{{routeUrl(page="recipe" id=5)}}'>{{recipe.name}}</a>
+    <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
     ```
 
     This produces (with no pretty routing rules):
@@ -26,8 +26,8 @@
     Use the `routeCurrent` helper like:
 
     ```html
-    <li {{#routeCurrent(page="recipe" id=5)}}class='active'{{/routeCurrent}}>
-      <a href='{{routeUrl(page="recipe" id=5)}}'>{{recipe.name}}</a>
+    <li {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}>
+      <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
     </li>
     ```
 
