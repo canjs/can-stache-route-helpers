@@ -1,6 +1,6 @@
 # can-stache-route-helpers
 
-[![Build Status](https://travis-ci.org/donejs/can-stache-route-helpers.svg?branch=master)](https://travis-ci.org/donejs/can-stache-route-helpers)
+[![Build Status](https://travis-ci.org/canjs/can-stache-route-helpers.svg?branch=master)](https://travis-ci.org/canjs/can-stache-route-helpers)
 
 helpers for can-route
 

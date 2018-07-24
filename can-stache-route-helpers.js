@@ -46,7 +46,7 @@ helpers.registerHelper('routeUrl',function(){
 var routeCurrent = function(){
 
 	var args = calculateArgs.apply(this, arguments);
-	var result = route.current( args.finalParams, typeof args.finalMerge === "boolean" ? args.finalMerge : undefined );
+	var result = route.isCurrent( args.finalParams, typeof args.finalMerge === "boolean" ? args.finalMerge : undefined );
 
 	if( args.optionsArg && !(args.optionsArg instanceof stacheExpression.Call) ) {
 		if( result ) {

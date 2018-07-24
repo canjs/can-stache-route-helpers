@@ -1,11 +1,11 @@
-@function can-stache-route-helpers.routeCurrent {{#routeCurrent(hash)}}
+@function can-stache-route-helpers.routeCurrent {{# routeCurrent(hash) }}
 @parent can-stache-route-helpers
 
 Returns if the hash values match the [can-route]’s current properties.
 
 @signature `routeCurrent( hashes... [,subsetMatch] )`
 
-  Calls [can-route.current route.current] with `hashes` and returns the result. This
+  Calls [can-route.isCurrent route.isCurrent] with `hashes` and returns the result. This
   can be used in conjunction with other helpers:
 
 ```html
@@ -15,7 +15,7 @@ Returns if the hash values match the [can-route]’s current properties.
 Or on its own:
 
 ```html
-<a class="{{#routeCurrent(page='todos', true)}}active{{/routeCurrent}}">Todos</a>
+<a class="{{# routeCurrent(page='todos', true) }}active{{/ routeCurrent }}">Todos</a>
 ```
 
   @param {can-stache/expressions/hash} hashes A hash expression like `page='edit' recipeId=id`.
@@ -24,15 +24,15 @@ Or on its own:
   return `true` if every value in `hashes` matches the current route data, even if
   the route data has additional properties that are not matched.
 
-  @return {Boolean} Returns the result of calling [can-route.current route.current].
+  @return {Boolean} Returns the result of calling [can-route.isCurrent route.isCurrent].
 
-@signature `{{#routeCurrent([subsetMatch,] hashes...)}}FN{{else}}INVERSE{{/routeCurrent}}`
+@signature `{{# routeCurrent([subsetMatch,] hashes...) }}FN{{else}}INVERSE{{/ routeCurrent }}`
 
-Renders `FN` if the `hashes` passed to [can-route.current route.current] returns `true`.
-Renders the `INVERSE` if [can-route.current route.current] returns `false`.
+Renders `FN` if the `hashes` passed to [can-route.isCurrent route.isCurrent] returns `true`.
+Renders the `INVERSE` if [can-route.isCurrent route.isCurrent] returns `false`.
 
 ```html
-<a class="{{#routeCurrent(true, page='todos')}}active{{/routeCurrent}}">Todos</a>
+<a class="{{# routeCurrent(true, page='todos') }}active{{/ routeCurrent }}">Todos</a>
 ```
 
   @param {Boolean} [subsetMatch] If an optional `true` is passed, `routeCurrent` will
@@ -59,8 +59,8 @@ Renders the `INVERSE` if [can-route.current route.current] returns `false`.
 Use the `routeCurrent` helper like:
 
 ```html
-<li {{#routeCurrent(page="recipe" id=5)}}class='active'{{/routeCurrent}}>
-  <a href='{{routeUrl(page="recipe" id=5)}}'>{{recipe.name}}</a>
+<li {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}>
+  <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
 </li>
 ```
 
