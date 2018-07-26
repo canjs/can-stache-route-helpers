@@ -1,6 +1,6 @@
 # can-stache-route-helpers
 
-[![Build Status](https://travis-ci.org/canjs/can-stache-route-helpers.svg?branch=master)](https://travis-ci.org/canjs/can-stache-route-helpers)
+[![Build Status](https://travis-ci.org/canjs/can-stache-route-helpers.svg?branch=master)](https://travis-ci.org/canjs/can-stache-route-helpers) [![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-stache-route-helpers.svg)](https://greenkeeper.io/)
 
 helpers for can-route
 
