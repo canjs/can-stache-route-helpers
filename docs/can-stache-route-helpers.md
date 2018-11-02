@@ -10,31 +10,57 @@
   The can-stache-route-helpers module doesn't export anything; It mixes in the following [can-stache] helpers that use [can-route]:
 
   - [can-stache-route-helpers.routeUrl]
-    Use the `routeUrl` helper like:
+    The example below shows how to produce a hyperlink reference on an anchor element using the `routeUrl` helper.
 
     ```html
-    <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
-    ```
+    <mock-url></mock-url>
+    <cooking-example></cooking-example>
+    <script type="module">
+    import {Component} from "can";
+    import "//unpkg.com/mock-url@^5";
 
-    This produces (with no pretty routing rules):
-
-    ```html
-    <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
+    Component.extend({
+      tag: "cooking-example",
+      view: `<a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>`,
+      ViewModel: {
+        recipe: {
+          default() {
+            return {name: "apple pie"};
+          }
+        }
+      }
+    });
+    </script>
     ```
+    @codepen
 
   - [can-stache-route-helpers.routeCurrent]
-    Use the `routeCurrent` helper like:
+    The next example shows how to use `routeCurrent` helper. If the url matches the parameters in `routeCurrent` it will add the `'active'` class to the list item, changing the background color:
 
     ```html
-    <li {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}>
-      <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
-    </li>
+    <mock-url></mock-url>
+    <cooking-example></cooking-example>
+    <style>
+      .active {
+        background-color: darkred;
+      }
+    </style>
+    <script type="module">
+    import {Component} from "can";
+    import "//unpkg.com/mock-url@^5";
+    Component.extend({
+      tag: "cooking-example",
+      view: `<li {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}>
+          <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
+        </li>`,
+      ViewModel: {
+        recipe: {
+          default() {
+            return {name: "apple pie"};
+          }
+        }
+      }
+    });
+    </script>
     ```
-
-    With default routes and a url like `#!&page=recipe&id=5`, this produces:
-
-    ```html
-    <li class='active'>
-      <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
-    </li>
-    ```
+    @codepen
