@@ -38,6 +38,13 @@
   <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
   ```
 
+  @param {can-stache/expressions/hash} [hashes...] A hash expression like `page='edit' recipeId=id`.
+
+  @param {Boolean} [merge] Pass `true` to create a url that merges `hashes` into the
+  current [can-route] properties.  
+
+  @return {String} Returns the result of calling `route.url`.
+
 @signature `{{ routeUrl([merge,] hashes...) }}`
 
   Passes the hashes to `route.url` and returns the result.
