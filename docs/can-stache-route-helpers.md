@@ -7,7 +7,7 @@
 
 @type {undefined}
 
-  The can-stache-route-helpers module doesn't export anything; It mixes in the following [can-stache] helpers that use [can-route]:
+  The can-stache-route-helpers module doesn't export anything. It mixes in the following [can-stache] helpers that use [can-route]:
 
   - [can-stache-route-helpers.routeUrl]
     The example below shows how to produce a hyperlink reference on an anchor element using the `routeUrl` helper.
@@ -17,7 +17,7 @@
     <cooking-example></cooking-example>
     <script type="module">
     import {Component} from "can";
-    import "//unpkg.com/mock-url@^5";
+    import "//unpkg.com/mock-url@5";
 
     Component.extend({
       tag: "cooking-example",
@@ -42,16 +42,18 @@
     <cooking-example></cooking-example>
     <style>
       .active {
-        background-color: darkred;
+        color: black;
+        text-decoration: none;
       }
     </style>
     <script type="module">
     import {Component} from "can";
-    import "//unpkg.com/mock-url@^5";
+    import "//unpkg.com/mock-url@5";
     Component.extend({
       tag: "cooking-example",
-      view: `<li {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}>
-          <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
+      view: `<li>
+          <a {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}
+          href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
         </li>`,
       ViewModel: {
         recipe: {

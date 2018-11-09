@@ -1,4 +1,4 @@
-@function can-stache-route-helpers.routeUrl {{ routeUrl(hashes) }}
+@function can-stache-route-helpers.routeUrl routeUrl(hashes)
 @parent can-stache-route-helpers
 
 @description Returns a url using [can-route.url route.url].
@@ -15,7 +15,7 @@
   <cooking-example></cooking-example>
   <script type="module">
   import {Component} from "can";
-  import "//unpkg.com/mock-url@^5";
+  import "//unpkg.com/mock-url@5";
 
   Component.extend({
     tag: "cooking-example",
@@ -38,46 +38,41 @@
   <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
   ```
 
-  @param {can-stache/expressions/hash} [hashes...] A hash expression like `page='edit' recipeId=id`.
+  @param {can-stache/expressions/hash|undefined} [hashes...] A hash expression like `page='edit' recipeId=id`. Passing `undefined` has the effect of writing out the current url.
 
   @param {Boolean} [merge] Pass `true` to create a url that merges `hashes` into the
-  current [can-route] properties.  
+  current [can-route] properties.
 
-  @return {String} Returns the result of calling `route.url`.
-
-@signature `{{ routeUrl([merge,] hashes...) }}`
-
-  Passes the hashes to `route.url` and returns the result.
-  Using call expressions/parenthesis lets you pass the `merge` option to `route`.  This
-  lets you write a url that only changes specified properties. The example below clicking __recipes__ will add a `page` hash, and clicking on the recipe name will add the `id`:
-
-  ```html
-  <mock-url></mock-url>
-  <cooking-example></cooking-example>
-  <script type="module">
-  import {Component} from "can";
-  import "//unpkg.com/mock-url@^5";
-
-  Component.extend({
-    tag: "cooking-example",
-    view: `<a href='{{ routeUrl(true, page="recipes") }}'>recipes</a>
-      <a href='{{ routeUrl(true, id=5) }}'>{{recipe.name}}</a>`,
-    ViewModel: {
-      recipe: {
-        default() {
-          return {name: "apple pie"};
-        }
-      }
-    }
-  });
-  </script>
-  ```
-  @codepen
-
-  @param {Boolean} [merge] Pass `true` to create a url that merges `hashes` into the
-  current [can-route] properties.  
-
-  @param {can-stache/expressions/hash} [hashes...] A hash expression like `page='edit' recipeId=id`.
+   In the following example notice that `#!&page=recipe` is in hash before clicking the link. After the link is `#!&page=recipe&id=5`:
+ 
+   ```html
+   <mock-url></mock-url>
+   <cooking-example></cooking-example>
+   <script type="module">
+   import {Component, route} from "can";
+   import "//unpkg.com/mock-url@5";
+ 
+     Component.extend({
+     tag: "cooking-example",
+     view: `<a href='{{ routeUrl(id=5) }}'>{{recipe.name}}</a>`,
+     ViewModel: {
+       routeData: {
+         default() {
+           route.data.page="recipe";
+           route.start();
+           return route.data;
+         }
+       },
+       recipe: {
+         default() {
+           return {name: "apple pie"};
+         }
+       }
+     }
+   });
+   </script>
+   ```
+   @codepen;
 
   @return {String} Returns the result of calling `route.url`.
 
@@ -85,10 +80,44 @@
 
 ## Use
 
-The following demo uses `routeUrl` and [can-stache-route-helpers.routeCurrent] to
+The following example uses `routeUrl` and [can-stache-route-helpers.routeCurrent] to
 create links that update [can-route]’s `page` attribute:
 
-@demo demos/can-stache/route-url.html
+```html
+<my-nav></my-nav>
+<script type="module">
+import {Component, route} from "can";
+
+Component.extend({
+  tag: "my-nav",
+  view: `
+    <a {{^ routeCurrent(page='home') }}
+      href="{{ routeUrl(page='home') }}"
+      {{/ routeCurrent }}
+    >home</a>
+    <a {{^ routeCurrent(page='restaurants') }}
+      href="{{ routeUrl(page='restaurants') }}"
+      {{/ routeCurrent }}
+    >restaurants</a>
+    {{# eq(routeData.page, 'home') }}
+      <h1>Home page</h1>
+    {{ else }}
+      <h1>Restaurants page</h1>
+    {{/ eq }}
+  `,
+  ViewModel: {
+    routeData: {
+      default() {
+        route.register("{page}", {page: "home"});
+        route.start();
+        return route.data;
+      }
+    }
+  }
+});
+</script>
+```
+@codepen
 
 It also writes out the current url like:
 

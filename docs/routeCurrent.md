@@ -1,30 +1,36 @@
-@function can-stache-route-helpers.routeCurrent {{# routeCurrent(hash) }}
+@function can-stache-route-helpers.routeCurrent routeCurrent(hash)
 @parent can-stache-route-helpers
 
 @description Returns if the hash values match the [can-route]’s current properties.
 
 @signature `routeCurrent( hashes... [,subsetMatch] )`
 
-  Calls [can-route.isCurrent route.isCurrent] with `hashes` and returns the result. The next example adds the `'active'` class on the anchor if `page` is equal to `todos`.
+  Calls [can-route.isCurrent route.isCurrent] with `hashes` and returns the result. The following example adds the `'active'` class on the anchor if [can-route.data `route.data.page`] is equal to `"recipes"` and [can-route.data `route.data.id`] is equal to `5`.
 
   ```html
   <mock-url></mock-url>
   <cooking-example></cooking-example>
   <style>
-  .active { background-color: darkred; }
+  .active {
+    color: black;
+    text-decoration: none;
+  }
   </style>
   <script type="module">
   import {Component} from "can";
-  import "//unpkg.com/mock-url@^5";
+  import "//unpkg.com/mock-url@5";
+
   Component.extend({
     tag: "cooking-example",
-    view: `<li {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}>
-        <a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
-      </li>`,
+    view: `
+      <a {{# routeCurrent(page="recipe", true) }}class='active'{{/ routeCurrent }}
+        href='{{ routeUrl(page="recipe" id=5) }}'
+      >{{recipe.name}}</a>
+    `,
     ViewModel: {
       recipe: {
         default() {
-          return {name: "apple pie"};
+          return [{name: "apple pie"}];
         }
       }
     }
@@ -43,64 +49,54 @@
 
   `routeCurrent` can also be used with other [can-stache.Helpers].
 
-  @param {can-stache/expressions/hash} hashes A hash expression like `page='edit' recipeId=id`.
+  @param {can-stache/expressions/hash} hashes A hash expression like `page='recipe' recipeId=id`.
 
   @param {Boolean} [subsetMatch] If an optional `true` is passed, `routeCurrent` will
   return `true` if every value in `hashes` matches the current route data, even if
   the route data has additional properties that are not matched.
+   
+   In the following example notice that the active class will apply when clicking on `pie`, but not `cake`.
+   ```html
+   <mock-url></mock-url>
+   <cooking-example></cooking-example>
+   <style>
+   .active {
+     color: black;
+     text-decoration: none;
+   }
+   </style>
+   <script type="module">
+   import {Component} from "can";
+   import "//unpkg.com/mock-url@5";
+
+   Component.extend({
+     tag: "cooking-example",
+     view: `
+       <a {{# routeCurrent(id="pie" true) }}class='active'{{/ routeCurrent }}
+         href='{{ routeUrl(page="recipe" id="pie" }}'
+       >{{pie.name}}</a>
+       <a {{# routeCurrent(id="cake") }}class='active'{{/ routeCurrent }}
+         href='{{ routeUrl(page="recipe" id="cake" }}'
+       >{{cake.name}}</a>
+     `,
+     ViewModel: {
+       pie: {
+         default() {
+           return {name: "apple pie"}
+         }
+       },
+       cake:{
+         default() {
+           return {name: "chocolate cake"}
+         }
+       }
+     }
+   });
+   </script>
+   ```
+   @codepen
 
   @return {Boolean} Returns the result of calling [can-route.isCurrent route.isCurrent].
-
-@signature `{{# routeCurrent([subsetMatch,] hashes...) }}FN{{else}}INVERSE{{/ routeCurrent }}`
-
-  Renders `FN` if the `hashes` passed to [can-route.isCurrent route.isCurrent] returns `true`.
-  Renders the `INVERSE` if [can-route.isCurrent route.isCurrent] returns `false`.
-
-  ```html
-  <mock-url></mock-url>
-  <todo-item></todo-item>
-  <style>
-  .active{ background-color: red; }
-  .inactive{ background-color: dimgray; }
-  </style>
-  <script type="module">
-  import {Component, route} from "can";
-  import "//unpkg.com/mock-url@^5";
-
-  Component.extend({
-    tag: "todo-item",
-    view: `<a href='{{ routeUrl(page='todos' id=3) }}'
-      class='{{# routeCurrent(true, page='todos') }}
-        active
-      {{else}}
-        inactive
-      {{/ routeCurrent }}'>
-        {{todo.name}}
-      </a>`,
-    ViewModel: {
-      todo: {
-        default() {
-          return {name: "eat apple pie"};
-        }
-      }
-    }
-  });
-  </script>
-  ```
-  @codepen
-
-  @param {Boolean} [subsetMatch] If an optional `true` is passed, `routeCurrent` will
-  return `true` if every value in `hashes` matches the current route data, even if
-  the route data has additional properties that are not matched.
-
-  @param {can-stache/expressions/hash} hashes A hash expression like `page='edit' recipeId=id`.
-
-  @param {can-stache.sectionRenderer} FN A subsection that will be rendered if the current route matches `hashes`.
-
-  @param {can-stache.sectionRenderer} [INVERSE] An optional subsection that will be rendered
-  if the current route does not match `hashes`.
-
-  @return {String} The result of `SUBEXPRESSION` or `{{else}}` expression.
 
 @body
 
@@ -109,4 +105,38 @@
 The following demo uses `routeCurrent` and [can-stache-route-helpers.routeUrl] to
 create links that update [can-route]’s `page` attribute:
 
-@demo demos/can-stache/route-url.html
+```html
+<my-nav></my-nav>
+<script type="module">
+import {Component, route} from "can";
+
+Component.extend({
+  tag: "my-nav",
+  view: `
+    <a {{^ routeCurrent(page='home') }}
+      href="{{ routeUrl(page='home') }}"
+      {{/ routeCurrent }}
+    >home</a>
+    <a {{^ routeCurrent(page='restaurants') }}
+      href="{{ routeUrl(page='restaurants') }}"
+      {{/ routeCurrent }}
+    >restaurants</a>
+    {{# eq(routeData.page, 'home') }}
+      <h1>Home page</h1>
+    {{ else }}
+      <h1>Restaurants page</h1>
+    {{/ eq }}
+  `,
+  ViewModel: {
+    routeData: {
+      default() {
+        route.register("{page}", {page: "home"});
+        route.start();
+        return route.data;
+      }
+    }
+  }
+});
+</script>
+```
+@codepen
