@@ -74,23 +74,11 @@
      view: `
        <a {{# routeCurrent(id="pie" true) }}class='active'{{/ routeCurrent }}
          href='{{ routeUrl(page="recipe" id="pie" }}'
-       >{{pie.name}}</a>
+       >apple pie</a>
        <a {{# routeCurrent(id="cake") }}class='active'{{/ routeCurrent }}
          href='{{ routeUrl(page="recipe" id="cake" }}'
-       >{{cake.name}}</a>
+       >chocolate cake</a>
      `,
-     ViewModel: {
-       pie: {
-         default() {
-           return {name: "apple pie"}
-         }
-       },
-       cake:{
-         default() {
-           return {name: "chocolate cake"}
-         }
-       }
-     }
    });
    </script>
    ```

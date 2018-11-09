@@ -52,24 +52,12 @@
    import {Component, route} from "can";
    import "//unpkg.com/mock-url@5";
  
-     Component.extend({
+   Component.extend({
      tag: "cooking-example",
-     view: `<a href='{{ routeUrl(id=5) }}'>{{recipe.name}}</a>`,
-     ViewModel: {
-       routeData: {
-         default() {
-           route.data.page="recipe";
-           route.start();
-           return route.data;
-         }
-       },
-       recipe: {
-         default() {
-           return {name: "apple pie"};
-         }
-       }
-     }
+     view: `<a href='{{ routeUrl(id=5, true) }}'>Apple Pie</a>`,
    });
+   route.data.set("page", "recipe");
+   route.start();
    </script>
    ```
    @codepen;
