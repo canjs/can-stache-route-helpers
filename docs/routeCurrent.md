@@ -47,8 +47,6 @@
   </li>
   ```
 
-  `routeCurrent` can also be used with other [can-stache.Helpers].
-
   @param {can-stache/expressions/hash} hashes A hash expression like `page='recipe' recipeId=id`.
 
   @param {Boolean} [subsetMatch] If an optional `true` is passed, `routeCurrent` will
