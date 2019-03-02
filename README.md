@@ -5,8 +5,6 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/canjs/can-stache-route-helpers/blob/master/LICENSE)
 [![npm version](https://badge.fury.io/js/can-stache-route-helpers.svg)](https://www.npmjs.com/package/can-stache-route-helpers)
 [![Travis build status](https://travis-ci.org/canjs/can-stache-route-helpers.svg?branch=master)](https://travis-ci.org/canjs/can-stache-route-helpers)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/canjs/can-stache-route-helpers?branch=master&svg=true)](https://ci.appveyor.com/project/matthewp/can-stache-route-helpers)
-[![Coverage status](https://coveralls.io/repos/github/canjs/can-stache-route-helpers/badge.svg?branch=master)](https://coveralls.io/github/canjs/can-stache-route-helpers?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/canjs/can-stache-route-helpers.svg)](https://greenkeeper.io/)
 
 helpers for can-route
