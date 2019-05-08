@@ -36,12 +36,12 @@ var calculateArgs = function(){
 
 
 // go through arguments ... if there's a boolean ... if there's a plain object
-helpers.registerHelper('routeUrl',function(){
+var routeUrl = function(){
 	var args = calculateArgs.apply(this, arguments);
 
 	return route.url(args.finalParams, typeof args.finalMerge === "boolean" ? args.finalMerge : undefined);
-
-});
+};
+helpers.registerHelper('routeUrl', routeUrl);
 
 var routeCurrent = function(){
 
@@ -61,3 +61,8 @@ var routeCurrent = function(){
 routeCurrent.callAsMethod = true;
 
 helpers.registerHelper('routeCurrent', routeCurrent);
+
+module.exports = {
+	routeUrl: routeUrl,
+	routeCurrent: routeCurrent
+};

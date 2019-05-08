@@ -3,9 +3,14 @@ var stache = require('can-stache');
 var route = require('can-route');
 var mockRoute = require("can-route/test/mock-route-binding");
 var CanMap = require("can-map");
-require("./can-stache-route-helpers");
+var helpers = require("./can-stache-route-helpers");
 
 QUnit.module("can-stache-route-helpers");
+
+QUnit.test("exports helper object", function() {
+	QUnit.equal(typeof helpers.routeUrl, "function", "routeUrl exists");
+	QUnit.equal(typeof helpers.routeCurrent, "function", "routeCurrent exists");
+});
 
 QUnit.test("routeUrl and routeCurrent", function(){
 	stop();
