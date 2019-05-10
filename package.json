@@ -46,7 +46,7 @@
     "can-route-mock": "^1.0.0",
     "jshint": "^2.9.1",
     "steal": "^2.0.0",
-    "steal-qunit": "^1.0.1",
+    "steal-qunit": "^2.0.0",
     "steal-tools": "^2.0.2",
     "testee": "^0.9.0"
   },
