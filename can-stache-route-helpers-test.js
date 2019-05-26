@@ -7,13 +7,13 @@ var helpers = require("./can-stache-route-helpers");
 
 QUnit.module("can-stache-route-helpers");
 
-QUnit.test("exports helper object", function() {
-	QUnit.equal(typeof helpers.routeUrl, "function", "routeUrl exists");
-	QUnit.equal(typeof helpers.routeCurrent, "function", "routeCurrent exists");
+QUnit.test("exports helper object", function(assert) {
+	assert.equal(typeof helpers.routeUrl, "function", "routeUrl exists");
+	assert.equal(typeof helpers.routeCurrent, "function", "routeCurrent exists");
 });
 
-QUnit.test("routeUrl and routeCurrent", function(){
-	stop();
+QUnit.test("routeUrl and routeCurrent", function(assert) {
+	var done = assert.async();
 	mockRoute.start();
 	var routeData = new CanMap({});
 	route.data = routeData;
@@ -25,7 +25,7 @@ QUnit.test("routeUrl and routeCurrent", function(){
 		recipe: new CanMap({id: 5, name: 'Cool recipe'})
 	});
 
-	QUnit.equal( frag.firstChild.getAttribute("href"), "#!&page=recipe&id=5", "href set");
+	assert.equal( frag.firstChild.getAttribute("href"), "#!&page=recipe&id=5", "href set");
 
 	template = stache("<a href=\"{{routeUrl(page='recipe' id=recipe.id}}\">{{recipe.name}}</a>");
 
@@ -33,17 +33,17 @@ QUnit.test("routeUrl and routeCurrent", function(){
 		recipe: new CanMap({id: 5, name: 'Cool recipe'})
 	});
 
-	QUnit.equal( frag.firstChild.getAttribute("href"), "#!&page=recipe&id=5", "href set");
+	assert.equal( frag.firstChild.getAttribute("href"), "#!&page=recipe&id=5", "href set");
 
 	template = stache("{{#routeCurrent(undefined)}}yes{{else}}no{{/routeCurrent}}");
 
 	frag = template({});
-	QUnit.equal(frag.firstChild.nodeValue, "yes", "route is current");
+	assert.equal(frag.firstChild.nodeValue, "yes", "route is current");
 
 	template = stache("{{#routeCurrent()}}yes{{else}}no{{/routeCurrent}}");
 
 	frag = template({});
-	QUnit.equal(frag.firstChild.nodeValue, "yes", "route is current");
+	assert.equal(frag.firstChild.nodeValue, "yes", "route is current");
 
 	route.attr({"foo":"bar", page: 'recipes'});
 
@@ -52,28 +52,28 @@ QUnit.test("routeUrl and routeCurrent", function(){
 		template = stache("{{#routeCurrent()}}yes{{else}}no{{/routeCurrent}}");
 
 		frag = template({});
-		QUnit.equal(frag.firstChild.nodeValue, "no", "route is not current");
+		assert.equal(frag.firstChild.nodeValue, "no", "route is not current");
 
 		template = stache("{{#routeCurrent(foo='bar', true)}}yes{{else}}no{{/routeCurrent}}");
 		frag = template({});
-		QUnit.equal(frag.firstChild.nodeValue, "yes", "route is somewhat current");
+		assert.equal(frag.firstChild.nodeValue, "yes", "route is somewhat current");
 
 		template = stache("{{#routeCurrent(foo='bar', true)}}yes{{else}}no{{/routeCurrent}}");
 		frag = template({});
-		QUnit.equal(frag.firstChild.nodeValue, "yes", "route is somewhat current");
+		assert.equal(frag.firstChild.nodeValue, "yes", "route is somewhat current");
 
 		template = stache("<a href=\"{{routeUrl(page='recipes' id=6, true)}}\"></a>");
 		frag = template({});
 
-		QUnit.equal( frag.firstChild.getAttribute("href"), "#!&foo=bar&page=recipes&id=6", "merge works helper");
+		assert.equal( frag.firstChild.getAttribute("href"), "#!&foo=bar&page=recipes&id=6", "merge works helper");
 
 		template = stache("<a href=\"{{routeUrl(page='recipe' id=5,true)}}\"></a>");
 		frag = template({});
 
-		QUnit.equal( frag.firstChild.getAttribute("href"), "#!&foo=bar&page=recipe&id=5", "merge works call expression");
+		assert.equal( frag.firstChild.getAttribute("href"), "#!&foo=bar&page=recipe&id=5", "merge works call expression");
 
 		mockRoute.stop();
-		start();
+		done();
 	},100);
 
 });
