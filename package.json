@@ -39,7 +39,7 @@
   "dependencies": {
     "can-reflect": "^1.16.3",
     "can-route": "^4.0.0",
-    "can-stache": "^4.0.0"
+    "can-stache": "canjs/can-stache#major"
   },
   "devDependencies": {
     "can-map": "^4.1.1",
