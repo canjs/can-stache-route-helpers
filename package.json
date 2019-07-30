@@ -37,6 +37,7 @@
     ]
   },
   "dependencies": {
+    "can-queues": "canjs/can-queues#dom-queue",
     "can-reflect": "^1.16.3",
     "can-route": "^4.0.0",
     "can-stache": "canjs/can-stache#major"
