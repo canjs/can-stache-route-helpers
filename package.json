@@ -13,6 +13,8 @@
     "url": "donejs.com"
   },
   "scripts": {
+    "ci": "npm run test && node test-saucelabs.js",
+    "http-server": "http-server -p 3000 --silent",
     "preversion": "npm test",
     "postpublish": "git push --tags && git push",
     "testee": "testee test.html --browsers firefox",
@@ -44,10 +46,12 @@
   "devDependencies": {
     "can-map": "^4.1.1",
     "can-route-mock": "^1.0.0",
+    "http-server": "^0.11.0",
     "jshint": "^2.9.1",
     "steal": "^2.0.0",
     "steal-qunit": "^2.0.0",
     "steal-tools": "^2.0.2",
+    "test-saucelabs": "^0.0.6",
     "testee": "^0.9.0"
   },
   "license": "MIT"
