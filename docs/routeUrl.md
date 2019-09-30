@@ -14,20 +14,24 @@
   <mock-url></mock-url>
   <cooking-example></cooking-example>
   <script type="module">
-  import {Component} from "can";
-  import "//unpkg.com/mock-url@5";
+    import { StacheElement } from "can";
+    import "//unpkg.com/mock-url@6";
 
-  Component.extend({
-    tag: "cooking-example",
-    view: `<a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>`,
-    ViewModel: {
-      recipe: {
-        default() {
-          return {name: "apple pie"};
+    class CookingExample extends StacheElement {
+      static view = `
+        <a href="{{ routeUrl(page='recipe' id=5) }}">{{ this.recipe.name }}</a>
+      `;
+      
+      static props = {
+        recipe: {
+          get default() {
+            return { name: "apple pie" };
+          }
         }
-      }
+      };
     }
-  });
+
+    customElements.define("cooking-example", CookingExample);
   </script>
   ```
   @codepen
@@ -35,7 +39,7 @@
   This produces (with no pretty routing rules):
 
   ```html
-  <a href='#!&page=recipe&id=5'>{{recipe.name}}</a>
+  <a href="#!&page=recipe&id=5">{{ this.recipe.name }}</a>
   ```
 
   @param {can-stache/expressions/hash|undefined} [hashes...] A hash expression like `page='edit' recipeId=id`. Passing `undefined` has the effect of writing out the current url.
@@ -49,15 +53,18 @@
    <mock-url></mock-url>
    <cooking-example></cooking-example>
    <script type="module">
-   import {Component, route} from "can";
-   import "//unpkg.com/mock-url@5";
- 
-   Component.extend({
-     tag: "cooking-example",
-     view: `<a href='{{ routeUrl(id=5, true) }}'>Apple Pie</a>`,
-   });
-   route.data.set("page", "recipe");
-   route.start();
+    import { StacheElement, route } from "can";
+    import "//unpkg.com/mock-url@6";
+  
+    class CookingExample extends StacheElement {
+      static view: `
+        <a href="{{ routeUrl(id=5, true) }}">Apple Pie</a>
+      `;
+    };
+    customElements.define("cooking-example", CookingExample);
+
+    route.data.set("page", "recipe");
+    route.start();
    </script>
    ```
    @codepen;
@@ -74,35 +81,37 @@ create links that update [can-route]’s `page` attribute:
 ```html
 <my-nav></my-nav>
 <script type="module">
-import {Component, route} from "can";
+  import { StacheElement, route } from "can";
 
-Component.extend({
-  tag: "my-nav",
-  view: `
-    <a {{^ routeCurrent(page='home') }}
-      href="{{ routeUrl(page='home') }}"
-      {{/ routeCurrent }}
-    >home</a>
-    <a {{^ routeCurrent(page='restaurants') }}
-      href="{{ routeUrl(page='restaurants') }}"
-      {{/ routeCurrent }}
-    >restaurants</a>
-    {{# eq(routeData.page, 'home') }}
-      <h1>Home page</h1>
-    {{ else }}
-      <h1>Restaurants page</h1>
-    {{/ eq }}
-  `,
-  ViewModel: {
-    routeData: {
-      default() {
-        route.register("{page}", {page: "home"});
-        route.start();
-        return route.data;
+  class MyNav extends StacheElement {
+    static view = `
+      <a {{^ routeCurrent(page='home') }}
+        href="{{ routeUrl(page='home') }}"
+        {{/ routeCurrent }}
+      >home</a>
+      <a {{^ routeCurrent(page='restaurants') }}
+        href="{{ routeUrl(page='restaurants') }}"
+        {{/ routeCurrent }}
+      >restaurants</a>
+      {{# eq(routeData.page, 'home') }}
+        <h1>Home page</h1>
+      {{ else }}
+        <h1>Restaurants page</h1>
+      {{/ eq }}
+    `;
+
+    static props = {
+      routeData: {
+        get default() {
+          route.register("{page}", {page: "home"});
+          route.start();
+          return route.data;
+        }
       }
-    }
+    };
   }
-});
+
+  customElements.define("my-nav", MyNav);
 </script>
 ```
 @codepen
