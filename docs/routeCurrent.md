@@ -31,7 +31,7 @@
       static props = {
         recipe: {
           get default() {
-            return [{ name: "apple pie" }];
+            return { name: "apple pie" };
           }
         }
       };
