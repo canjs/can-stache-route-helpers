@@ -16,20 +16,24 @@
     <mock-url></mock-url>
     <cooking-example></cooking-example>
     <script type="module">
-    import {Component} from "can";
-    import "//unpkg.com/mock-url@5";
+      import { StacheElement } from "can";
+      import "//unpkg.com/mock-url@6";
 
-    Component.extend({
-      tag: "cooking-example",
-      view: `<a href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>`,
-      ViewModel: {
-        recipe: {
-          default() {
-            return {name: "apple pie"};
+      class CookingExample extends StacheElement {
+        static view = `
+          <a href="{{ routeUrl(page="recipe" id=5) }}">{{ this.recipe.name }}</a>
+        `;
+
+        static props = {
+          recipe: {
+            get default() {
+              return { name: "apple pie" };
+            };
           }
-        }
+        };
       }
-    });
+      
+      customElements.define("cooking-example");
     </script>
     ```
     @codepen
@@ -47,22 +51,29 @@
       }
     </style>
     <script type="module">
-    import {Component} from "can";
-    import "//unpkg.com/mock-url@5";
-    Component.extend({
-      tag: "cooking-example",
-      view: `<li>
-          <a {{# routeCurrent(page="recipe" id=5) }}class='active'{{/ routeCurrent }}
-          href='{{ routeUrl(page="recipe" id=5) }}'>{{recipe.name}}</a>
-        </li>`,
-      ViewModel: {
-        recipe: {
-          default() {
-            return {name: "apple pie"};
+      import { StacheElement } from "can";
+      import "//unpkg.com/mock-url@6";
+
+      class CookingExample extends StacheElement {
+        static view = `
+          <li>
+            <a {{# routeCurrent(page='recipe' id=5) }}class="active"{{/ routeCurrent }}
+              href="{{ routeUrl(page='recipe' id=5) }}">
+              {{ this.recipe.name }}
+            </a>
+          </li>
+        `;
+
+        static props = {
+          recipe: {
+            get default() {
+              return { name: "apple pie" };
+            };
           }
-        }
+        };
       }
-    });
+
+      customElements.define("cooking-example", CookingExample);
     </script>
     ```
     @codepen
