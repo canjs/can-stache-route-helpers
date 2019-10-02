@@ -38,12 +38,12 @@ QUnit.test("routeUrl and routeCurrent", function(assert) {
 	template = stache("{{#routeCurrent(undefined)}}yes{{else}}no{{/routeCurrent}}");
 
 	frag = template({});
-	assert.equal(frag.firstChild.nodeValue, "yes", "route is current");
+	assert.equal(frag.childNodes[1].nodeValue, "yes", "route is current");
 
 	template = stache("{{#routeCurrent()}}yes{{else}}no{{/routeCurrent}}");
 
 	frag = template({});
-	assert.equal(frag.firstChild.nodeValue, "yes", "route is current");
+	assert.equal(frag.childNodes[1].nodeValue, "yes", "route is current");
 
 	route.attr({"foo":"bar", page: 'recipes'});
 
@@ -52,15 +52,15 @@ QUnit.test("routeUrl and routeCurrent", function(assert) {
 		template = stache("{{#routeCurrent()}}yes{{else}}no{{/routeCurrent}}");
 
 		frag = template({});
-		assert.equal(frag.firstChild.nodeValue, "no", "route is not current");
+		assert.equal(frag.childNodes[1].nodeValue, "no", "route is not current");
 
 		template = stache("{{#routeCurrent(foo='bar', true)}}yes{{else}}no{{/routeCurrent}}");
 		frag = template({});
-		assert.equal(frag.firstChild.nodeValue, "yes", "route is somewhat current");
+		assert.equal(frag.childNodes[1].nodeValue, "yes", "route is somewhat current");
 
 		template = stache("{{#routeCurrent(foo='bar', true)}}yes{{else}}no{{/routeCurrent}}");
 		frag = template({});
-		assert.equal(frag.firstChild.nodeValue, "yes", "route is somewhat current");
+		assert.equal(frag.childNodes[1].nodeValue, "yes", "route is somewhat current");
 
 		template = stache("<a href=\"{{routeUrl(page='recipes' id=6, true)}}\"></a>");
 		frag = template({});
