@@ -48,7 +48,7 @@
   "devDependencies": {
     "can-map": "^4.1.1",
     "can-route-mock": "^1.0.0",
-    "http-server": "^0.11.0",
+    "http-server": "^0.12.0",
     "jshint": "^2.9.1",
     "steal": "^2.0.0",
     "steal-qunit": "^2.0.0",
